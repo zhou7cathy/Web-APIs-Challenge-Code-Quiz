@@ -1,0 +1,24 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+main{
+    display: flex;
+    width: 50%;
+    margin: 5% 25%;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+    margin: 25px;
+}
+
+.start-quiz{
+    margin: 0 44%;
+}
