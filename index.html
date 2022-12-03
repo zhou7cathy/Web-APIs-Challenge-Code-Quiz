@@ -8,17 +8,29 @@
     <title>Coding Quiz Challenge</title>
 </head>
 <body>
-    <header>
+    <div class="container">
         <button class="view-scores">View high scores</button>
-        <div id="countdown"></div>
-    </header>
+        <div id="countdown">Time: 100</div>
+    </div>
     
     <main>
-        <section>
+        <section id="home">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-            <button class="start-quiz">Start Quiz</button>
+            <button id="start-quiz">Start Quiz</button>
         </section>
+
+        <section id="quiz-container">
+            <h1 id="question-container">Question</h1>
+            <div id="choice-container">
+                <button class="answer">Answer 1</button>
+                <button class="answer">Answer 2</button>
+                <button class="answer">Answer 3</button>
+                <button class="answer">Answer 4</button>
+            </div>
+        </section>
+
+
     </main>
 
 

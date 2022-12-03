@@ -1,6 +1,13 @@
-var timerEl = document.getElementById('countdown');
 
-function countdown() {
+var startButton = document.getElementById('start-quiz')
+
+//When you click on Start Quiz button the startGame function will run
+startButton.addEventListener('click', startGame)
+
+function startGame(){
+    var timerEl = document.getElementById('countdown');
+
+    function countdown() {
     var timeLeft = 100;
    
     var timeInterval = setInterval(function () {
@@ -13,10 +20,30 @@ function countdown() {
     }
 
   }, 1000);
+    }
+    function displayMessage() {
+
+    }
+    countdown();
+
+    document.getElementById("home").style.display = "none";
+    document.getElementById("quiz-container").style.display = "flex";
+    document.getElementById("quiz-container").style.flexDirection = "column";
+    document.getElementById("choice-container").style.display = "flex";
+    document.getElementById("choice-container").style.flexDirection = "column";
 }
 
-function displayMessage() {
-    timeEl.textContent = " ";
+function nextQuestion(){
+
+
 }
 
-countdown();
+function selectAnswer(){
+
+
+}
+
+
+
+
+
