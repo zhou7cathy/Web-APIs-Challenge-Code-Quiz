@@ -1,6 +1,7 @@
 var startButton = document.getElementById('start-quiz')
 var questionContainer = document.getElementById('question-container')
 var choiceContainer = document.getElementById('choice-container')
+var homeContainer = document.getElementById('home')
 var option1 = document.getElementById('option1')
 var option2 = document.getElementById('option2')
 var option3 = document.getElementById('option3')
@@ -46,6 +47,10 @@ function displayMessage() {
     let resultText = 'Your final score is ' + scores + '.'
     result.innerText = resultText;
    
+    var userForm = document.getElementById("user-form")
+    userForm.style.display = "flex";
+    userForm.style.margin = "10px 0";
+    document.getElementById("submit-Btn").style.display = "flex";
 }
 
 function startGame(){
@@ -54,6 +59,8 @@ function startGame(){
 
     //Style of question and answers after click event
     document.getElementById("home").style.display = "none";
+    document.getElementById("user-form").style.display = "none";
+    document.getElementById("submit-Btn").style.display = "none";
     document.getElementById("quiz-container").style.display = "flex";
     document.getElementById("quiz-container").style.flexDirection = "column";
     document.getElementById("choice-container").style.display = "flex";
@@ -102,6 +109,69 @@ function nextQuestion(event){
         timeLeft = 0;
     }
 }
+
+
+
+function renderScores() {
+    document.getElementById("home").style.display = "none";
+    document.querySelector(".container").style.display = "none";
+    document.getElementById("quiz-container").style.display = "none";
+    document.getElementById("score-container").style.display = "block";
+    //use for loop to append array
+    
+
+}
+
+var viewScoreBtn = document.querySelector('.view-scores')
+
+viewScoreBtn.addEventListener("click", function(event) {
+    event.preventDefault()
+    renderScores();
+
+});
+
+var goBackBtn = document.getElementById('go-back-btn')
+
+goBackBtn.addEventListener("click", function(event) {
+    document.getElementById("score-container").style.display = "none";
+    document.querySelector(".container").style.display = "flex";
+    homeContainer.style.display = "block";
+
+});
+
+var clearBtn = document.getElementById('clear-btn')
+clearBtn.addEventListener("click", function(event) {
+    localStorage.clear();    
+
+});
+
+var submitButton = document.getElementById('submit-Btn')
+submitButton.addEventListener("click", function(event) {
+    event.preventDefault();
+  
+    var userName = document.querySelector("#user-name").value;
+    //Retrieve local storage
+    var userScore = JSON.parse(localStorage.getItem("userScore"));
+
+    if(userScore) {
+        userScore.push({
+            name: userName,
+            score: scores,
+        })
+    } else {
+        userScore = [
+            {
+                name: userName,
+                score: scores,
+            }
+        ]
+    }
+    
+    //store array of object in local storage
+    localStorage.setItem("userScore",JSON.stringify(userScore));
+        
+  });
+
 
 //Store questions in an array of object
 var questions = [
