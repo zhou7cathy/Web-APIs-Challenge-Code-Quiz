@@ -32,6 +32,8 @@ function countdown() {
 
         if(timeLeft <= 0) {
             timerEl.textContent = "Time: " + 0;
+            timeLeft = 100;
+            questionIndex = 0;
             clearInterval(timeInterval);
             displayMessage();
         }
@@ -54,7 +56,7 @@ function displayMessage() {
 }
 
 function startGame(){
-   
+
     countdown();
 
     //Style of question and answers after click event
@@ -117,9 +119,18 @@ function renderScores() {
     document.querySelector(".container").style.display = "none";
     document.getElementById("quiz-container").style.display = "none";
     document.getElementById("score-container").style.display = "block";
-    //use for loop to append array
-    
-
+    //use for loop to append userScore
+    var userScore = JSON.parse(localStorage.getItem("userScore"));
+    document.querySelector('#score-list').innerHTML = '';
+    if(userScore) {
+        for (let i = 0; i < userScore.length; i++){
+            let list = document.createElement('li');
+            list.innerText=userScore[i]['name'] + "    " + userScore[i]['score'] ;
+            document.querySelector('#score-list').appendChild(list);
+        }
+    } else {
+        document.querySelector('#score-list').innerHTML = 'No scores yet.';
+    }
 }
 
 var viewScoreBtn = document.querySelector('.view-scores')
@@ -142,13 +153,14 @@ goBackBtn.addEventListener("click", function(event) {
 var clearBtn = document.getElementById('clear-btn')
 clearBtn.addEventListener("click", function(event) {
     localStorage.clear();    
-
+    document.querySelector('#score-list').innerHTML = '';
 });
 
 var submitButton = document.getElementById('submit-Btn')
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
-  
+
+    document.getElementById('countdown').textContent = "Time: " + timeLeft;
     var userName = document.querySelector("#user-name").value;
     //Retrieve local storage
     var userScore = JSON.parse(localStorage.getItem("userScore"));
@@ -169,7 +181,9 @@ submitButton.addEventListener("click", function(event) {
     
     //store array of object in local storage
     localStorage.setItem("userScore",JSON.stringify(userScore));
-        
+    
+    scores = 0;
+    renderScores();
   });
 
 
