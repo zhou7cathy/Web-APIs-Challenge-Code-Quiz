@@ -1,7 +1,5 @@
-.container{
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
+body{
+    background-color: rgb(147, 164, 111);
 }
 
 main{
@@ -20,6 +18,16 @@ p{
     margin: 25px;
 }
 
+button{
+    background-color:rgb(144, 183, 129) ;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
 #start-quiz{
     margin: 0 40%;
 }
@@ -28,4 +36,11 @@ p{
     display: none;
 }
 
+button:hover{
+    background-color: rgb(197, 205, 120);
+}
+
+input{
+    background-color:rgb(181, 206, 125);
+}
 
