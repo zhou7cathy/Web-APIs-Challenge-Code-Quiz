@@ -22,6 +22,18 @@ button{
     background-color:rgb(144, 183, 129) ;
 }
 
+#score-list{
+    margin-left: 40px;
+}
+
+#score-list li {
+    margin-left: 10px;
+}
+
+#go-back-btn {
+    margin-left: 75px;
+}
+
 .container{
     display: flex;
     justify-content: space-between;
@@ -44,3 +56,11 @@ input{
     background-color:rgb(181, 206, 125);
 }
 
+
+@media (max-width: 532px) { 
+    #clear-btn{
+        margin-left: 75px;
+        margin-top: 5px;
+    }
+
+}
