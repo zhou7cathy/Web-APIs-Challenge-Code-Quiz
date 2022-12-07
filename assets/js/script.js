@@ -1,12 +1,15 @@
-var startButton = document.getElementById('start-quiz')
-var questionContainer = document.getElementById('question-container')
-var choiceContainer = document.getElementById('choice-container')
-var homeContainer = document.getElementById('home')
-var option1 = document.getElementById('option1')
-var option2 = document.getElementById('option2')
-var option3 = document.getElementById('option3')
-var option4 = document.getElementById('option4')
-var result = document.getElementById('result')
+var startButton = document.querySelector('#start-quiz')
+var questionContainer = document.querySelector('#question-container')
+var choiceContainer = document.querySelector('#choice-container')
+var homeContainer = document.querySelector('#home')
+var quizContainer = document.querySelector("#quiz-container")
+var option1 = document.querySelector('#option1')
+var option2 = document.querySelector('#option2')
+var option3 = document.querySelector('#option3')
+var option4 = document.querySelector('#option4')
+var result = document.querySelector('#result')
+var submitBtn = document.querySelector("#submit-Btn")
+var userForm = document.querySelector("#user-form")
 var questionIndex = 0;
 var scores = 0;
 var timeLeft = 100;
@@ -14,18 +17,18 @@ var timeLeft = 100;
 //When you click on Start Quiz button the startGame function will run
 startButton.addEventListener('click', startGame)
 //Go to next question after each click
-var nextButton = document.getElementById('option1')
+var nextButton = option1
 nextButton.addEventListener('click', nextQuestion)
-var nextButton = document.getElementById('option2')
+var nextButton = option2
 nextButton.addEventListener('click', nextQuestion)
-var nextButton = document.getElementById('option3')
+var nextButton = option3
 nextButton.addEventListener('click', nextQuestion)
-var nextButton = document.getElementById('option4')
+var nextButton = option4
 nextButton.addEventListener('click', nextQuestion)
 
 function countdown() {
     //Timer
-    var timerEl = document.getElementById('countdown');
+    var timerEl = document.querySelector('#countdown');
     var timeInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = "Time: " + timeLeft;
@@ -49,10 +52,9 @@ function displayMessage() {
     let resultText = 'Your final score is ' + scores + '.'
     result.innerText = resultText;
    
-    var userForm = document.getElementById("user-form")
     userForm.style.display = "flex";
     userForm.style.margin = "10px 0";
-    document.getElementById("submit-Btn").style.display = "flex";
+    submitBtn.style.display = "flex";
 }
 
 function startGame(){
@@ -60,13 +62,13 @@ function startGame(){
     countdown();
 
     //Style of question and answers after click event
-    document.getElementById("home").style.display = "none";
-    document.getElementById("user-form").style.display = "none";
-    document.getElementById("submit-Btn").style.display = "none";
-    document.getElementById("quiz-container").style.display = "flex";
-    document.getElementById("quiz-container").style.flexDirection = "column";
-    document.getElementById("choice-container").style.display = "flex";
-    document.getElementById("choice-container").style.flexDirection = "column";
+    homeContainer.style.display = "none";
+    userForm.style.display = "none";
+    submitBtn.style.display = "none";
+    quizContainer.style.display = "flex";
+    quizContainer.style.flexDirection = "column";
+    choiceContainer.style.display = "flex";
+    choiceContainer.style.flexDirection = "column";
     
     nextQuestion()
  
@@ -115,14 +117,14 @@ function nextQuestion(event){
 
 
 function renderScores() {
-    document.getElementById("home").style.display = "none";
+    homeContainer.style.display = "none";
     document.querySelector(".container").style.display = "none";
-    document.getElementById("quiz-container").style.display = "none";
-    document.getElementById("score-container").style.display = "block";
+    quizContainer.style.display = "none";
+    document.querySelector("#score-container").style.display = "block";
     //use for loop to append userScore
     var userScore = JSON.parse(localStorage.getItem("userScore"));
     document.querySelector('#score-list').innerHTML = '';
-    if(userScore) {
+    if(userScore!== null) {
         for (let i = 0; i < userScore.length; i++){
             let list = document.createElement('li');
             list.innerText=userScore[i]['name'] + "    " + userScore[i]['score'] ;
@@ -134,38 +136,35 @@ function renderScores() {
 }
 
 var viewScoreBtn = document.querySelector('.view-scores')
-
 viewScoreBtn.addEventListener("click", function(event) {
     event.preventDefault()
     renderScores();
 
 });
 
-var goBackBtn = document.getElementById('go-back-btn')
-
+var goBackBtn = document.querySelector('#go-back-btn')
 goBackBtn.addEventListener("click", function(event) {
-    document.getElementById("score-container").style.display = "none";
+    document.querySelector("#score-container").style.display = "none";
     document.querySelector(".container").style.display = "flex";
     homeContainer.style.display = "block";
 
 });
 
-var clearBtn = document.getElementById('clear-btn')
+var clearBtn = document.querySelector('#clear-btn')
 clearBtn.addEventListener("click", function(event) {
     localStorage.clear();    
     document.querySelector('#score-list').innerHTML = '';
 });
 
-var submitButton = document.getElementById('submit-Btn')
-submitButton.addEventListener("click", function(event) {
+submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
 
-    document.getElementById('countdown').textContent = "Time: " + timeLeft;
+    document.querySelector('#countdown').textContent = "Time: " + timeLeft;
     var userName = document.querySelector("#user-name").value;
     //Retrieve local storage
     var userScore = JSON.parse(localStorage.getItem("userScore"));
 
-    if(userScore) {
+    if(userScore!== null) {
         userScore.push({
             name: userName,
             score: scores,
