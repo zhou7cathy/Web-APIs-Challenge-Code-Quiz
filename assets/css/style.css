@@ -56,10 +56,26 @@ input{
     background-color:rgb(181, 206, 125);
 }
 
+@media (max-width: 533px) { 
+    #score-list{
+        margin-left: auto;
+    }
+    
+    #score-list li {
+        margin-left: 0;
+    }
+    
+    #go-back-btn {
+        margin-left: 0;
+    }
 
-@media (max-width: 532px) { 
+    #score-container{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
     #clear-btn{
-        margin-left: 75px;
         margin-top: 5px;
     }
 
