@@ -10,6 +10,7 @@ var option4 = document.querySelector('#option4')
 var result = document.querySelector('#result')
 var submitBtn = document.querySelector("#submit-Btn")
 var userForm = document.querySelector("#user-form")
+
 var questionIndex = 0;
 var scores = 0;
 var timeLeft = 100;
@@ -25,6 +26,23 @@ var nextButton = option3
 nextButton.addEventListener('click', nextQuestion)
 var nextButton = option4
 nextButton.addEventListener('click', nextQuestion)
+
+function startGame(){
+
+    countdown();
+
+    //Style of question and answers after click event
+    homeContainer.style.display = "none";
+    userForm.style.display = "none";
+    submitBtn.style.display = "none";
+    quizContainer.style.display = "flex";
+    quizContainer.style.flexDirection = "column";
+    choiceContainer.style.display = "flex";
+    choiceContainer.style.flexDirection = "column";
+    
+    nextQuestion()
+ 
+}
 
 function countdown() {
     //Timer
@@ -56,25 +74,6 @@ function displayMessage() {
     userForm.style.margin = "10px 0";
     submitBtn.style.display = "flex";
 }
-
-function startGame(){
-
-    countdown();
-
-    //Style of question and answers after click event
-    homeContainer.style.display = "none";
-    userForm.style.display = "none";
-    submitBtn.style.display = "none";
-    quizContainer.style.display = "flex";
-    quizContainer.style.flexDirection = "column";
-    choiceContainer.style.display = "flex";
-    choiceContainer.style.flexDirection = "column";
-    
-    nextQuestion()
- 
-}
-
-
 function nextQuestion(event){
     //get result from attribute
     if(event) {
@@ -114,8 +113,6 @@ function nextQuestion(event){
     }
 }
 
-
-
 function renderScores() {
     homeContainer.style.display = "none";
     document.querySelector(".container").style.display = "none";
@@ -133,6 +130,11 @@ function renderScores() {
     } else {
         document.querySelector('#score-list').innerHTML = 'No scores yet.';
     }
+    clearInput()
+}
+
+function clearInput(){
+    userForm.reset();
 }
 
 var viewScoreBtn = document.querySelector('.view-scores')
@@ -184,7 +186,6 @@ submitBtn.addEventListener("click", function(event) {
     scores = 0;
     renderScores();
   });
-
 
 //Store questions in an array of object
 var questions = [
